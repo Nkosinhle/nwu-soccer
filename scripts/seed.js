@@ -1588,7 +1588,7 @@ async function seed() {
       n:'Lincoln Vyver',
       nick:'Spider',
       dob:'2001-03-02',
-      pos:'Midfielder',
+      pos:'Goalkeeper',
       dpos:'MF'
     },
 
