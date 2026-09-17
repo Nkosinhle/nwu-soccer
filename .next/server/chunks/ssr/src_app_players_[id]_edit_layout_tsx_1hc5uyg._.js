@@ -1,0 +1,3 @@
+module.exports=[37581,a=>{"use strict";var b=a.i(7997),c=a.i(73388);a.s(["default",0,function({children:a}){return(0,b.jsxs)("div",{className:"min-h-screen bg-slate-50 flex",children:[(0,b.jsx)(c.default,{}),(0,b.jsx)("main",{className:"flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0 pt-14 lg:pt-0",children:a})]})}])},99939,function(a){a.n(a.i(37581))}];
+
+//# sourceMappingURL=src_app_players_%5Bid%5D_edit_layout_tsx_1hc5uyg._.js.map

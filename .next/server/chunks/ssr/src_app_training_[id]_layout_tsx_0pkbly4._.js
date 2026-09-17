@@ -1,0 +1,3 @@
+module.exports=[533,a=>{"use strict";var b=a.i(7997),c=a.i(73388);a.s(["default",0,function({children:a}){return(0,b.jsxs)("div",{className:"min-h-screen bg-slate-50 flex",children:[(0,b.jsx)(c.default,{}),(0,b.jsx)("main",{className:"flex-1 lg:ml-64 min-h-screen pb-20 lg:pb-0 pt-14 lg:pt-0",children:a})]})}])},20388,function(a){a.n(a.i(533))}];
+
+//# sourceMappingURL=src_app_training_%5Bid%5D_layout_tsx_0pkbly4._.js.map
