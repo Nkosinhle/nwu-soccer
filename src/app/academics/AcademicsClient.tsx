@@ -172,7 +172,7 @@ function ExportButton({
     <button
       onClick={handleExport}
       disabled={loading}
-      className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#4B2D83] text-white text-sm font-medium rounded-lg hover:bg-[#3a2066] transition disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 bg-[#4B2D83] text-white text-sm font-medium rounded-lg hover:bg-[#3a2066] transition disabled:opacity-60 disabled:cursor-not-allowed"
     >
       {loading ? (
         <svg
@@ -453,9 +453,9 @@ export default function AcademicsClient({
         subtitle="Player timetable submissions & academic tracking"
       />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {/* Summary cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-5 sm:mb-8">
           {[
             {
               label:
@@ -499,10 +499,10 @@ export default function AcademicsClient({
           ].map((card) => (
             <div
               key={card.label}
-              className={`rounded-xl border p-5 ${card.color}`}
+              className={`rounded-xl border p-3 sm:p-5 min-w-0 ${card.color}`}
             >
               <div
-                className={`text-4xl font-bold ${card.num}`}
+                className={`text-2xl sm:text-4xl font-bold ${card.num}`}
               >
                 {card.value}
               </div>
@@ -544,187 +544,262 @@ export default function AcademicsClient({
         </div>
 
         {/* Academic period */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4 mb-4">
-          <div className="flex flex-wrap gap-4 items-end">
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
-                Semester
-              </label>
+<div className="bg-white rounded-xl border border-gray-200 p-4 mb-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
+    <div className="w-full">
+      <label className="block text-xs text-gray-500 mb-1">
+        Semester
+      </label>
 
-              <select
-                value={semester}
-                onChange={(e) =>
-                  changeSemester(
-                    Number(
-                      e.target.value
-                    )
-                  )
-                }
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-              >
-                <option value={1}>
-                  Semester 1
-                </option>
+      <select
+        value={semester}
+        onChange={(e) =>
+          changeSemester(Number(e.target.value))
+        }
+        className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white"
+      >
+        <option value={1}>Semester 1</option>
+        <option value={2}>Semester 2</option>
+      </select>
+    </div>
 
-                <option value={2}>
-                  Semester 2
-                </option>
-              </select>
-            </div>
+    <div className="w-full">
+      <label className="block text-xs text-gray-500 mb-1">
+        Year
+      </label>
 
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
-                Year
-              </label>
+      <input
+        type="number"
+        value={year}
+        onChange={(e) =>
+          changeYear(Number(e.target.value))
+        }
+        className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm"
+      />
+    </div>
 
-              <input
-                type="number"
-                value={year}
-                onChange={(e) =>
-                  changeYear(
-                    Number(
-                      e.target.value
-                    )
-                  )
-                }
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-28"
-              />
-            </div>
+    <div className="w-full">
+      <label className="block text-xs text-gray-500 mb-1">
+        Squad
+      </label>
 
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
-                Squad
-              </label>
+      <select
+        value={squad}
+        onChange={(e) =>
+          changeSquad(e.target.value)
+        }
+        className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white"
+      >
+        <option value="">All Squads</option>
 
-              <select
-                value={squad}
-                onChange={(e) =>
-                  changeSquad(
-                    e.target.value
-                  )
-                }
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm min-w-48"
-              >
-                <option value="">
-                  All Squads
-                </option>
+        {teams.map((team) => (
+          <option
+            key={team._id}
+            value={team._id}
+          >
+            {team.name}
+          </option>
+        ))}
+      </select>
+    </div>
 
-                {teams.map(
-                  (team) => (
-                    <option
-                      key={
-                        team._id
-                      }
-                      value={
-                        team._id
-                      }
-                    >
-                      {team.name}
-                    </option>
-                  )
-                )}
-              </select>
-            </div>
-
-            <button
-              onClick={
-                sendReminders
-              }
-              disabled={
-                sendingReminders
-              }
-              className="px-3 py-2 bg-amber-500 text-white text-sm font-medium rounded-lg hover:bg-amber-600 disabled:opacity-60"
-            >
-              {sendingReminders
-                ? 'Sending…'
-                : 'Send Reminders'}
-            </button>
-          </div>
-        </div>
+    <button
+      onClick={sendReminders}
+      disabled={sendingReminders}
+      className="w-full px-3 py-2.5 bg-amber-500 text-white text-sm font-medium rounded-lg hover:bg-amber-600 disabled:opacity-60 transition"
+    >
+      {sendingReminders
+        ? 'Sending…'
+        : 'Send Reminders'}
+    </button>
+  </div>
+</div>
 
         {/* Toolbar */}
-        <div className="flex flex-wrap gap-3 items-center justify-between mb-4">
-          <div className="flex gap-2 flex-wrap">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) =>
-                setSearch(
-                  e.target.value
-                )
-              }
-              placeholder="Search players…"
-              className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4B2D83] w-48"
-            />
+<div className="mb-4 space-y-3">
+  <input
+    type="text"
+    value={search}
+    onChange={(e) =>
+      setSearch(e.target.value)
+    }
+    placeholder="Search players…"
+    className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4B2D83]"
+  />
 
-            {(
-              [
-                'all',
-                'complete',
-                'partial',
-                'none',
-              ] as const
-            ).map(
-              (value) => (
-                <button
-                  key={value}
-                  onClick={() =>
-                    setFilter(
-                      value
-                    )
-                  }
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
-                    filter ===
-                    value
-                      ? 'bg-[#4B2D83] text-white'
-                      : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
-                  }`}
-                >
-                  {value ===
-                  'all'
-                    ? 'All'
-                    : value
-                        .charAt(
-                          0
-                        )
-                        .toUpperCase() +
-                      value.slice(
-                        1
-                      )}
-                </button>
-              )
+  <div className="flex gap-2 overflow-x-auto pb-1">
+    {(
+      [
+        'all',
+        'complete',
+        'partial',
+        'none',
+      ] as const
+    ).map((value) => (
+      <button
+        key={value}
+        onClick={() => setFilter(value)}
+        className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition ${
+          filter === value
+            ? 'bg-[#4B2D83] text-white'
+            : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+        }`}
+      >
+        {value === 'all'
+          ? 'All'
+          : value.charAt(0).toUpperCase() +
+            value.slice(1)}
+      </button>
+    ))}
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <ExportButton
+      type="academics-overview"
+      payload={{
+        semester,
+        year,
+        squad: squad || undefined,
+      }}
+      label="Export Overview"
+    />
+
+    <ExportButton
+      type="exam-timetable"
+      payload={{
+        semester,
+        year,
+        squad: squad || undefined,
+      }}
+      label="Export Exam Schedule"
+    />
+  </div>
+</div>
+
+{/* Mobile player cards */}
+<div className="md:hidden space-y-3">
+  {loading ? (
+    <div className="bg-white rounded-xl border border-gray-200 flex items-center justify-center h-40">
+      <div className="w-8 h-8 border-4 border-[#4B2D83] border-t-transparent rounded-full animate-spin" />
+    </div>
+  ) : filtered.length === 0 ? (
+    <div className="bg-white rounded-xl border border-gray-200 text-center py-12 text-gray-400">
+      <p className="text-sm">No players found</p>
+    </div>
+  ) : (
+    filtered.map((row) => (
+      <div
+        key={row.player._id}
+        className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm"
+      >
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 flex-shrink-0 rounded-full bg-purple-100 text-[#4B2D83] text-xs font-bold flex items-center justify-center">
+                {row.player.jerseyNumber || '—'}
+              </span>
+
+              <div className="min-w-0">
+                <p className="font-semibold text-gray-800 truncate">
+                  {row.player.name}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  {row.player.position}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <StatusBadge status={row.status} />
+        </div>
+
+        <div className="mb-4">
+          <span className="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded font-medium">
+            {row.player.squad || 'No squad'}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3">
+            <p className="text-[11px] uppercase tracking-wide text-gray-400 font-semibold mb-1">
+              Class Timetable
+            </p>
+
+            {row.classSchedule.submitted ? (
+              <>
+                <p className="text-green-600 font-semibold text-xs">
+                  ✓ Submitted
+                </p>
+
+                <p className="text-xs text-gray-400 mt-1">
+                  {row.classSchedule.slotCount} time slots
+                </p>
+              </>
+            ) : (
+              <p className="text-red-500 font-semibold text-xs">
+                ✗ Missing
+              </p>
             )}
           </div>
 
-          <div className="flex gap-2">
-            <ExportButton
-              type="academics-overview"
-              payload={{
-                semester,
-                year,
-                squad:
-                  squad ||
-                  undefined,
-              }}
-              label="Export Overview"
-            />
+          <div className="bg-gray-50 rounded-lg p-3">
+            <p className="text-[11px] uppercase tracking-wide text-gray-400 font-semibold mb-1">
+              Assessments
+            </p>
 
-            <ExportButton
-              type="exam-timetable"
-              payload={{
-                semester,
-                year,
-                squad:
-                  squad ||
-                  undefined,
-              }}
-              label="Export Exam Schedule"
-            />
+            {row.assessmentTimetable.submitted ? (
+              <>
+                <p className="text-green-600 font-semibold text-xs">
+                  ✓ Submitted
+                </p>
+
+                <p className="text-xs text-gray-400 mt-1">
+                  {row.assessmentTimetable.assessmentCount} assessments
+                </p>
+              </>
+            ) : (
+              <p className="text-red-500 font-semibold text-xs">
+                ✗ Missing
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Table */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        {row.assessmentTimetable.nextAssessment && (
+          <div className="border-t border-gray-100 pt-3 mb-3">
+            <p className="text-[11px] uppercase tracking-wide text-gray-400 font-semibold">
+              Next Assessment
+            </p>
+
+            <p className="text-sm font-medium text-gray-700 mt-1">
+              {row.assessmentTimetable.nextAssessment.subject}
+            </p>
+
+            <p className="text-xs text-gray-400">
+              {new Date(
+                row.assessmentTimetable.nextAssessment.date
+              ).toLocaleDateString('en-ZA', {
+                day: 'numeric',
+                month: 'short',
+              })}
+            </p>
+          </div>
+        )}
+
+        <Link
+          href={`/academics/${row.player._id}?semester=${semester}&year=${year}`}
+          className="flex items-center justify-center w-full rounded-lg bg-purple-50 text-[#4B2D83] font-semibold text-sm py-2.5 hover:bg-purple-100 transition"
+        >
+          View Academic Details →
+        </Link>
+      </div>
+    ))
+  )}
+</div>
+
+        {/* Desktop / tablet table */}
+        <div className="hidden md:block bg-white rounded-xl border border-gray-200 overflow-x-auto">
           {loading ? (
             <div className="flex items-center justify-center h-48">
               <div className="w-8 h-8 border-4 border-[#4B2D83] border-t-transparent rounded-full animate-spin" />
