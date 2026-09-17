@@ -48,15 +48,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🔐 Demo Login Accounts
-
-| Role | Email | Password |
-|------|-------|----------|
-| **Admin** | admin@nwu.ac.za | password123 |
-| **Coach** | coach@nwu.ac.za | password123 |
-| **Physio** | physio@nwu.ac.za | password123 |
-| **Support Staff** | support@nwu.ac.za | password123 |
-| **Player** | player@nwu.ac.za | password123 |
+## 🔐 Demo Login Account
 
 ---
 
