@@ -13,7 +13,9 @@
 import { Resend } from 'resend'
 import mongoose, { Schema } from 'mongoose'
 
-const resend   = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null
 const FROM     = process.env.RESEND_FROM || 'NWU Soccer Institute <soccer@nwu.ac.za>'
 const APP_URL  = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
